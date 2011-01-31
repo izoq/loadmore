@@ -84,6 +84,17 @@
 #pragma mark -
 #pragma mark Table view delegate
 
+// Use this method if you want to automatically load more cells...
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [cellItem count]) {
+        [self fillData:[cellItem count]];
+        [self.tableView reloadData];
+    }    
+}
+
+/*
+// Use this method if you want to manually load more cells (by tapping the "Load More..." cell)...
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == [cellItem count]) {
@@ -91,6 +102,7 @@
         [self.tableView reloadData];
     }
 }
+ */
 
 #pragma mark -
 #pragma mark Memory management
