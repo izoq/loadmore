@@ -27,7 +27,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UITableViewController {
-	NSMutableArray	*cellItem;
+    NSMutableArray	*cellItem;
 }
 
 @end

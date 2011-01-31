@@ -30,10 +30,9 @@
 
 - (void)fillData:(int)currentSize
 {
-	for (int i = currentSize; i < currentSize + 10; i++) {
-		NSLog(@"Adding cell[i]= %d", i);
-		[cellItem addObject:[NSString stringWithFormat:@"String %d", i]];
-	}
+    for (int i = currentSize; i < currentSize + 10; i++) {
+        [cellItem addObject:[NSString stringWithFormat:@"String %d", i]];
+    }
 }
 
 #pragma mark -
@@ -42,12 +41,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-	cellItem = [[NSMutableArray alloc] init];
-	
-	self.navigationItem.title = @"Load More";
-	
-	[self fillData:0];
+    
+    cellItem = [[NSMutableArray alloc] init];
+    
+    self.navigationItem.title = @"Load More";
+    
+    [self fillData:0];
 }
 
 #pragma mark -
@@ -65,20 +64,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     static NSString *CellIdentifier = @"Cell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-
-	if (indexPath.row == [cellItem count]) {
-		cell.textLabel.textAlignment = UITextAlignmentCenter;
-		cell.textLabel.text = @"Load More...";
-	} else {
-		cell.textLabel.textAlignment = UITextAlignmentLeft;
-		cell.textLabel.text = [cellItem objectAtIndex:indexPath.row];
-	}
-
+    
+    cell.textLabel.textAlignment = UITextAlignmentLeft;
+    
+    if (indexPath.row == [cellItem count]) {
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.text = @"Load More...";
+    } else
+        cell.textLabel.text = [cellItem objectAtIndex:indexPath.row];
+    
     return cell;
 }
 
@@ -87,10 +86,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row == [cellItem count]) {
-		[self fillData:[cellItem count]];
-		[self.tableView reloadData];
-	}
+    if (indexPath.row == [cellItem count]) {
+        [self fillData:[cellItem count]];
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark -
@@ -103,7 +102,7 @@
 
 - (void)dealloc
 {
-	[cellItem dealloc];
+    [cellItem dealloc], cellItem = nil;
     [super dealloc];
 }
 
